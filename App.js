@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import Screen from "./app/components/Screen";
+import HomePage from "./app/components/HomePage"
+import FlyerPage from "./app/components/FlyerPage";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>This is the home page of Festival Papi</Text>
-      <StatusBar style="auto" />
-    </View>
+    <FlyerPage/>
   );
 }
 
