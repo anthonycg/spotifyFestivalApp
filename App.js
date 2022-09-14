@@ -4,10 +4,13 @@ import Screen from "./app/components/Screen";
 import HomePage from "./app/components/HomePage"
 import FlyerPage from "./app/components/FlyerPage";
 import AppPicker from "./app/components/AppPicker";
+import Picker from "./app/components/Picker";
+import AddArtists from "./app/components/AddArtists";
+
 
 export default function App() {
   return (
-    <AppPicker/>
+    <AddArtists />
   );
 }
 

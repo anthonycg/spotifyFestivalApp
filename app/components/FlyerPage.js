@@ -22,7 +22,7 @@ const FlyerPage = () => {
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: "red",
+        backgroundColor: "tomato",
       }}
     >
     <View style={{flex: 1, resizeMode: "contain"}}>
