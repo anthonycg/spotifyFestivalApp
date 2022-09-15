@@ -6,11 +6,12 @@ import FlyerPage from "./app/components/FlyerPage";
 import AppPicker from "./app/components/AppPicker";
 import Picker from "./app/components/Picker";
 import AddArtists from "./app/components/AddArtists";
+import SpotifyComponent from "./app/components/SpotifyComponent";
 
 
 export default function App() {
   return (
-    <AddArtists />
+    <SpotifyComponent />
   );
 }
 
