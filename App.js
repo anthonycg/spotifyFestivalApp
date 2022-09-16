@@ -6,14 +6,29 @@ import FlyerPage from "./app/components/FlyerPage";
 import AppPicker from "./app/components/AppPicker";
 import Picker from "./app/components/Picker";
 import AddArtists from "./app/components/AddArtists";
-import SpotifyComponent from "./app/components/SpotifyComponent";
+import SpotifyComponent from "./app/components/SpotifyLogin";
+import { StateNavigator } from 'navigation';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+const Stack = createStackNavigator();
 
 
 export default function App() {
   return (
-    <SpotifyComponent />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login to Spotify" component={SpotifyComponent}/>
+        <Stack.Screen
+          name="FlyerPage"
+          component={FlyerPage}
+          options={{ title: 'Austin City Limits' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

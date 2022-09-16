@@ -12,6 +12,7 @@ import {
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorage } from "react-native";
 import { ResponseType, useAuthRequest } from "expo-auth-session";
+import axios from "axios";
 
 const styles = StyleSheet.create({
     container: {
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const SpotifyComponent = ({props}) => {
+const SpotifyComponent = ({navigation}) => {
     const CLIENT_ID = "8cf7a0cf72444805aeda7887e60dea29";
-    const REDIRECT_URI = "http://localhost:3000/";
+    const REDIRECT_URI = "exp://192.168.1.114:19000";
     const RESPONSE_TYPE = "token";
     const authParams = {
         authorizationEndpoint: "https://accounts.spotify.com/authorize",
@@ -52,8 +53,8 @@ const SpotifyComponent = ({props}) => {
                 "user-read-email",
                 "user-read-private",
             ],
-            // In order to follow the "Authorization Code Flow"
-            // to fetch token after authorizationEndpoint
+            // Following "Authorization Code Flow" to fetch token 
+            // after authorizationEndpoint
             // this must be set to false
             usePKCE: false,
             redirectUri: REDIRECT_URI,
@@ -82,7 +83,7 @@ const SpotifyComponent = ({props}) => {
                 }
             )
                 .then((response) => {
-                    setSongs(songAction.addTopSongs(response));
+                    setSongs(response);
                 })
                 .catch((error) => {
                     console.log("error", error.message);
@@ -92,8 +93,9 @@ const SpotifyComponent = ({props}) => {
 
     setTimeout(
         () =>
-            navigation.replace("Home", {
+            navigation.replace("FlyerPage", {
                 token: token,
+                songs: songs
             }),
         500
     );
@@ -101,8 +103,8 @@ const SpotifyComponent = ({props}) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />
-            {token ? (
-                <Text style={{ color: "red" }}>{token}</Text>
+            {songs ? ( //may change this back to token
+                <Text style={{ color: "red" }}>{songs}</Text>
             ) : (
                 <Text style={{ color: "red" }}>No Token</Text>
             )}

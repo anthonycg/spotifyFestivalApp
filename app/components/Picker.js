@@ -9,6 +9,7 @@ import { SafeAreaView } from "react-native";
 
 const PickerOfItems = () => {
     const [artistsOnFlyer, setArtistsOnFlyer] = useState();
+    const [selectedArtist, setSelectedArtist] = useState("");
 
     const handleArtistSelection = () => {
 
@@ -20,19 +21,20 @@ const PickerOfItems = () => {
             <Picker
                 selectedValue={"Hello"}
                 onValueChange={(itemValue, itemIndex) =>
-                    setSelectedLanguage(itemValue)
+                    setSelectedArtist(itemValue)
                 }
             >
                 {/* I'll manually enter the artists from the flyer into the db. 
                 From there, I'll retrieve the artists from the db with a fetch and set them to state: artistsOnFlyer
                 Then I'll map through the artists and set them as the picker.item -- need to address their value though */}
-                {artistsOnFlyer.map((idx, artist) => {
+                {/* {artistsOnFlyer.map((idx, artist) => {
                     return(
                         <Picker.Item label={artist.name} value="java" />
                     )
-                })}
+                })} */}
                 
-                {/* <Picker.Item label="JavaScript" value="js" /> */}
+                <Picker.Item label="JavaScript" value="js" />
+                <Picker.Item label="{artist.name}" value="java" />
             </Picker>
         </SafeAreaView>
     );
