@@ -9,15 +9,17 @@ import {
 } from "react-native";
 import Picker from "./Picker";
 
-const FlyerPage = ({songs}) => {
-    const styles = StyleSheet.create({
-        background: {
-            flex: 1,
-            width: null,
-            height: null,
-            resizeMode: "stretch",
-        },
-    });
+const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: "stretch",
+    },
+});
+
+const FlyerPage = ({route,navigation}) => {
+    const {token, setToken} = route.params;
 
     return (
         <SafeAreaView
@@ -47,6 +49,7 @@ const FlyerPage = ({songs}) => {
                     }}
                 >
                     Select an Artist:
+                    
                 </Text>
             </View>
             <View
@@ -55,7 +58,8 @@ const FlyerPage = ({songs}) => {
                     backgroundColor: "tomato",
                 }}
             >
-                <Picker></Picker>
+                
+                <Picker token={token} setToken = {setToken}></Picker>
             </View>
             
         </SafeAreaView>

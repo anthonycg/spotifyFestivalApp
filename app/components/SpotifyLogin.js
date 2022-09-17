@@ -13,6 +13,7 @@ import {
 import { AsyncStorage } from "react-native";
 import { ResponseType, useAuthRequest } from "expo-auth-session";
 import axios from "axios";
+import * as WebBrowser from 'expo-web-browser';
 
 const styles = StyleSheet.create({
     container: {
@@ -83,6 +84,7 @@ const SpotifyComponent = ({navigation}) => {
                 }
             )
                 .then((response) => {
+                    console(response)
                     setSongs(response);
                 })
                 .catch((error) => {
@@ -97,14 +99,14 @@ const SpotifyComponent = ({navigation}) => {
                 token: token,
                 songs: songs
             }),
-        500
+        5000
     );
 
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />
-            {songs ? ( //may change this back to token
-                <Text style={{ color: "red" }}>{songs}</Text>
+            {token ? ( //may change this back to token
+                <Text style={{ color: "red" }}>{token}</Text>
             ) : (
                 <Text style={{ color: "red" }}>No Token</Text>
             )}
