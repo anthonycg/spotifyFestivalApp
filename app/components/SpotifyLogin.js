@@ -83,38 +83,16 @@ const SpotifyComponent = ({ navigation }) => {
                         token: token,
                         songs: songs,
                     }),
-                2000
+                5000
             );
         }
     }, [response]);
 
-    // useEffect(() => {
-    //     if (token) {
-    //         axios(
-    //             "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
-    //             {
-    //                 method: "GET",
-    //                 headers: {
-    //                     Accept: "application/json",
-    //                     "Content-Type": "application/json",
-    //                     Authorization: "Bearer " + token,
-    //                 },
-    //             }
-    //         )
-    //             .then((response) => {
-    //                 console(response)
-    //                 setSongs(response);
-    //             })
-    //             .catch((error) => {
-    //                 console.log("error", error.message);
-    //             });
-    //     }
-    // });
     // setTimeout(
     //     () =>
     //         navigation.replace("FlyerPage", {
     //             token: token,
-    //             songs: songs
+    //             songs: songs,
     //         }),
     //     5000
     // );
@@ -152,7 +130,7 @@ const SpotifyComponent = ({ navigation }) => {
                 <Text style={{ fontWeight: "700", fontSize: 16}}>Login with Spotify</Text>
             </Pressable>
             {token ? ( //may change this back to token
-                <Text style={{ color: "lightgreen" }}>"Login Successful!"</Text>
+                <Text style={{ color: "lightgreen" }}>"Login Successful! Redirecting..."</Text>
             ) : (
                 <Text style={{ color: "white" }}>Please Login.</Text>
             )}

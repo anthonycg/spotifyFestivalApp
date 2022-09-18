@@ -143,11 +143,9 @@ const PickerOfItems = (props) => {
                     )
                 })} */}
 
-                        <Picker.Item
-                            label="The Chicks"
-                            value="the chicks"
-                        />
-                        <Picker.Item style={styles.pickerItem} label="SZA" value="sza" />
+                        <Picker.Item label="--Select an artist--" value="" />
+                        <Picker.Item label="The Chicks" value="the chicks" />
+                        <Picker.Item label="SZA" value="sza" />
                         <Picker.Item label="Phoenix [W2]" value="phoenix" />
                         <Picker.Item
                             label="Nathaniel Rateliff and The Night Sweats"
@@ -157,6 +155,15 @@ const PickerOfItems = (props) => {
                             label="Billy Strings"
                             value="billy strings"
                         />
+                        <Picker.Item label="James Blake" value="james blake" />
+                        <Picker.Item label="Jazmine Sullivan" value="Jazmine Sullivan" />
+                        <Picker.Item label="Conan Gray" value="Conan Gray" />
+                        <Picker.Item label="Big Gigantic" value="Big Gigantic" />
+                        <Picker.Item label="Zach Bryan" value="Zach Bryan" />
+                        <Picker.Item label="Carly Rae Jepsen" value="Carly Rae Jepsen" />
+                        <Picker.Item label="Omar Apollo" value="Omar Apollo" />
+                        <Picker.Item label="Lucky Daye" value="Lucky Daye" />
+                        <Picker.Item label="Arlo Parks" value="Arlo Parks" />
                     </Picker>
                 </View>
             ) : (
@@ -195,11 +202,9 @@ const styles = StyleSheet.create({
     picker: {
         width: "100%",
         color: "white",
-        fontSize: 38
-        
+        fontSize: 38,
     },
-    pickerItem: {
-    },
+    pickerItem: {},
 });
 
 export default PickerOfItems;

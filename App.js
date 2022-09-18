@@ -23,6 +23,9 @@ export default function App() {
                     options={{
                         headerStyle: {
                             backgroundColor: "black",
+                            elevation: 0,
+                            shadowOpacity: 0,
+                            borderBottomWidth: 0,
                         },
                         headerTintColor: "#fff",
                         headerTitleStyle: {
