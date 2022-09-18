@@ -65,14 +65,14 @@ const PickerOfItems = (props) => {
                     Authorization: BEARER_PLUST_TOKEN,
                 },
                 params: {
-                    q: "drake",
+                    q: selectedArtist,
                     type: "artist",
                 },
             }
         )
             .then(async (returnedArtist) => {
-                console.log(returnedArtist);
-                let params22 = "3TVXtAsR1Inumwj472S9r4";
+                console.log("THIS",returnedArtist.data.artists.items[0].id);
+                let params22 = returnedArtist.data.artists.items[0].id;
                 await axios(
                     "https://api.spotify.com/v1/artists/" +
                         params22 +
@@ -85,22 +85,22 @@ const PickerOfItems = (props) => {
                             Authorization: BEARER_PLUST_TOKEN,
                         },
                         params: {
-                            id: "3TVXtAsR1Inumwj472S9r4",
+                            id: returnedArtist.data.artists.items[0].id,
                             market: "US",
                         },
                     }
                 )
                     .then(async (detailedArtistInfo) => {
-                        console.log(
-                            "!@#$%^&*(*&^%$#@!#$%^&*(*&^%$#",
-                            detailedArtistInfo
-                        );
-                        console.log(
-                            "tracks",
-                            detailedArtistInfo.data.tracks[0].album.href
-                        );
-                        // FIGURE OUT HOW TO PASS DATA TO BROWSER, SPECIIFICALLY SPOTIFY TOKEN
-                        WebBrowser.openBrowserAsync(detailedArtistInfo.data.tracks[0].album.href);
+                        // console.log(
+                        //     "!@#$%^&*(*&^%$#@!#$%^&*(*&^%$#",
+                        //     detailedArtistInfo
+                        // );
+                        // console.log(
+                        //     "tracks",
+                        //     detailedArtistInfo.data.tracks[0].external_urls.spotify //This returns the artists most current popular song 
+                        // );
+                        //Opens in-app browswer with window to most popular song.
+                        WebBrowser.openBrowserAsync(detailedArtistInfo.data.tracks[0].external_urls.spotify);
                     })
                     .catch((err) => console.log(err));
             })
@@ -129,8 +129,8 @@ const PickerOfItems = (props) => {
                         <Text style={{ color: "tomato", fontWeight: "bold" }}>
                             Logout
                         </Text>
-                    </Pressable>
-                    <Text>token: {token}</Text> */}
+                    </Pressable>*/}
+                    {/* <Text>token: {token}</Text>  */}
                     <Picker
                         style={styles.picker}
                         selectedValue={selectedArtist}
@@ -147,11 +147,11 @@ const PickerOfItems = (props) => {
                     )
                 })} */}
 
-                        <Picker.Item label="JavaScript" value="js" />
-                        <Picker.Item label="{artist.}" value="java" />
-                        <Picker.Item label="{artist.n}" value="java2" />
-                        <Picker.Item label="{artist.na}" value="java3" />
-                        <Picker.Item label="{artist.nam}" value="java4" />
+                        <Picker.Item label="Friday The Chicks" value="friday the chicks" />
+                        <Picker.Item label="SZA" value="sza" />
+                        <Picker.Item label="Phoenix [W2]" value="phoenix" />
+                        <Picker.Item label="Nathaniel Rateliff and The Night Sweats" value="nathaniel rateliff &amp; The Night Sweats" />
+                        <Picker.Item label="Billy String" value="Billy Strings" />
                     </Picker>
                 </View>
             ) : (
