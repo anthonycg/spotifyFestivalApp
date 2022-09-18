@@ -15,6 +15,7 @@ import {
 import { useEffect } from "react";
 import * as WebBrowser from "expo-web-browser";
 import InAppBrowser from "react-native-inappbrowser-reborn";
+import { color } from "react-native-elements/dist/helpers";
 
 // selectionsObj = {
 //     objects : "Record",
@@ -108,7 +109,7 @@ const PickerOfItems = (props) => {
                             onPress={handleArtistSelection}
                         >
                             <Text
-                                style={{ color: "tomato", fontWeight: "bold" }}
+                                style={{ color: "black", fontWeight: "bold" }}
                             >
                                 Listen Now
                             </Text>
@@ -127,6 +128,7 @@ const PickerOfItems = (props) => {
                     {/* <Text>token: {token}</Text>  */}
                     <Picker
                         style={styles.picker}
+                        itemStyle={styles.picker}
                         selectedValue={selectedArtist}
                         onValueChange={(itemValue) =>
                             grabPickerIndex(itemValue)
@@ -145,14 +147,14 @@ const PickerOfItems = (props) => {
                             label="The Chicks"
                             value="the chicks"
                         />
-                        <Picker.Item label="SZA" value="sza" />
+                        <Picker.Item style={styles.pickerItem} label="SZA" value="sza" />
                         <Picker.Item label="Phoenix [W2]" value="phoenix" />
                         <Picker.Item
                             label="Nathaniel Rateliff and The Night Sweats"
                             value="nathaniel rateliff &amp; The Night Sweats"
                         />
                         <Picker.Item
-                            label="Billy String"
+                            label="Billy Strings"
                             value="billy strings"
                         />
                     </Picker>
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
     },
     listenButton: {
         marginTop: 10,
-        backgroundColor: "gold",
+        backgroundColor: "tomato",
         borderRadius: 15,
         width: 110,
         height: 30,
@@ -192,6 +194,11 @@ const styles = StyleSheet.create({
     },
     picker: {
         width: "100%",
+        color: "white",
+        fontSize: 38
+        
+    },
+    pickerItem: {
     },
 });
 

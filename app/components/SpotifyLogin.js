@@ -26,10 +26,11 @@ const styles = StyleSheet.create({
     loginButton: {
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "tomato",
+        backgroundColor: "dodgerblue",
         height: 45,
         width: 200,
         borderRadius: 25,
+        marginBottom: 15
     },
     button: {
         width: 200,
@@ -82,7 +83,7 @@ const SpotifyComponent = ({ navigation }) => {
                         token: token,
                         songs: songs,
                     }),
-                5000
+                2000
             );
         }
     }, [response]);
@@ -121,16 +122,12 @@ const SpotifyComponent = ({ navigation }) => {
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />
-            {token ? ( //may change this back to token
-                <Text style={{ color: "green" }}>"Login Successful!"</Text>
-            ) : (
-                <Text style={{ color: "red" }}>Please Login!</Text>
-            )}
+
             <Text
                 style={{
                     fontSize: 70,
                     fontWeight: "bold",
-                    color: "white",
+                    color: "tomato",
                     marginBottom: "0%",
                 }}
             >
@@ -152,60 +149,16 @@ const SpotifyComponent = ({ navigation }) => {
                     promptAsync();
                 }}
             >
-                <Text style={{ fontSize: 16}}>Login with Spotify</Text>
+                <Text style={{ fontWeight: "700", fontSize: 16}}>Login with Spotify</Text>
             </Pressable>
+            {token ? ( //may change this back to token
+                <Text style={{ color: "lightgreen" }}>"Login Successful!"</Text>
+            ) : (
+                <Text style={{ color: "white" }}>Please Login.</Text>
+            )}
             <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
     );
 };
-
-// useEffect(() => {
-//     const storeData = async (value) => {
-//         try {
-//             await AsyncStorage.setItem("@storage_Key", value);
-//         } catch (e) {
-//             // saving error
-//         }
-//     };
-
-//     const hash = window.location.hash;
-//     let token = window.localStorage.getItem("token");
-
-//     if (!token && hash) {
-//         token = hash
-//             .substring(1)
-//             .split("&")
-//             .find((elmnt) => elmnt.startsWith("access_token"))
-//             .split("=")[1];
-
-//         window.location.hash = "";
-//         window.localStorage.setItem("token", token);
-//         setToken(token);
-//     }
-// }, []);
-
-// const handleLogout = () => {
-//     window.localStorage.clear("token");
-// };
-
-// return (
-//     <SafeAreaView>
-//         {!token ? (
-//             <Text
-//                 style={{ color: "blue" }}
-//                 onPress={() =>
-//                     Linking.openURL(
-//                         `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`
-//                     )
-//                 }
-//             >
-//                 LOGIN
-//             </Text>
-//         ) : (
-//             <Text onPress={handleLogout}>LOGOUT</Text>
-//         )}
-//     </SafeAreaView>
-// );
-// }
 
 export default SpotifyComponent;

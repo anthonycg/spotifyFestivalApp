@@ -7,6 +7,7 @@ import {
     StyleSheet,
     Image,
 } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import Picker from "./Picker";
 
 const styles = StyleSheet.create({
@@ -25,9 +26,10 @@ const FlyerPage = ({route,navigation}) => {
         <SafeAreaView
             style={{
                 flex: 1,
-                backgroundColor: "gold",
+                backgroundColor: "black",
             }}
         >
+            <StatusBar style="light" />
             <View style={{ flex: 1, resizeMode: "contain" }}>
                 <Image
                     style={styles.background}
@@ -36,30 +38,12 @@ const FlyerPage = ({route,navigation}) => {
             </View>
             <View
                 style={{
-                    flex: 0.1,
-                    backgroundColor: "blue",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <Text
-                    style={{
-                        fontSize: 26,
-                        color: "white",
-                    }}
-                >
-                    Select an Artist:
-                    
-                </Text>
-            </View>
-            <View
-                style={{
-                  flex: 0.35,
-                    backgroundColor: "tomato",
+                  flex: 0.5,
+                    backgroundColor: "black",
                 }}
             >
                 
-                <Picker token={token} setToken = {setToken}></Picker>
+                <Picker style={{color:"white"}} token={token} setToken = {setToken}></Picker>
             </View>
             
         </SafeAreaView>
