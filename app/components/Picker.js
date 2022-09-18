@@ -13,31 +13,13 @@ import {
     Linking,
 } from "react-native";
 import { useEffect } from "react";
-import * as WebBrowser from 'expo-web-browser';
-import InAppBrowser from 'react-native-inappbrowser-reborn';
+import * as WebBrowser from "expo-web-browser";
+import InAppBrowser from "react-native-inappbrowser-reborn";
 
 // selectionsObj = {
 //     objects : "Record",
 //     parts: "cars"
 // }
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: "center",
-    },
-    listenButton: {
-        marginTop: 10,
-        backgroundColor: "gold",
-        borderRadius: 15,
-        width: 110,
-        height: 30,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    picker: {
-        width: "100%",
-    },
-});
 
 const PickerOfItems = (props) => {
     const { token } = props;
@@ -71,7 +53,7 @@ const PickerOfItems = (props) => {
             }
         )
             .then(async (returnedArtist) => {
-                console.log("THIS",returnedArtist.data.artists.items[0].id);
+                console.log("THIS", returnedArtist.data.artists.items[0].id);
                 let params22 = returnedArtist.data.artists.items[0].id;
                 await axios(
                     "https://api.spotify.com/v1/artists/" +
@@ -97,10 +79,13 @@ const PickerOfItems = (props) => {
                         // );
                         // console.log(
                         //     "tracks",
-                        //     detailedArtistInfo.data.tracks[0].external_urls.spotify //This returns the artists most current popular song 
+                        //     detailedArtistInfo.data.tracks[0].external_urls.spotify //This returns the artists most current popular song
                         // );
                         //Opens in-app browswer with window to most popular song.
-                        WebBrowser.openBrowserAsync(detailedArtistInfo.data.tracks[0].external_urls.spotify);
+                        WebBrowser.openBrowserAsync(
+                            detailedArtistInfo.data.tracks[0].external_urls
+                                .spotify
+                        );
                     })
                     .catch((err) => console.log(err));
             })
@@ -117,14 +102,23 @@ const PickerOfItems = (props) => {
         <SafeAreaView>
             {token != null || token != "" || token != undefined ? (
                 <View style={styles.container}>
-                    <Pressable
-                        style={styles.listenButton}
-                        onPress={handleArtistSelection}
-                    >
-                        <Text style={{ color: "tomato", fontWeight: "bold" }}>
-                            Listen Now
+                    {selectedArtist ? (
+                        <Pressable
+                            style={styles.listenButton}
+                            onPress={handleArtistSelection}
+                        >
+                            <Text
+                                style={{ color: "tomato", fontWeight: "bold" }}
+                            >
+                                Listen Now
+                            </Text>
+                        </Pressable>
+                    ) : (
+                        <Text style={styles.listenButtonNoArtistYet}>
+                            Scroll below to select an artist.
                         </Text>
-                    </Pressable>
+                    )}
+
                     {/* <Pressable style={styles.listenButton} onPress={logout}>
                         <Text style={{ color: "tomato", fontWeight: "bold" }}>
                             Logout
@@ -147,11 +141,20 @@ const PickerOfItems = (props) => {
                     )
                 })} */}
 
-                        <Picker.Item label="Friday The Chicks" value="friday the chicks" />
+                        <Picker.Item
+                            label="The Chicks"
+                            value="the chicks"
+                        />
                         <Picker.Item label="SZA" value="sza" />
                         <Picker.Item label="Phoenix [W2]" value="phoenix" />
-                        <Picker.Item label="Nathaniel Rateliff and The Night Sweats" value="nathaniel rateliff &amp; The Night Sweats" />
-                        <Picker.Item label="Billy String" value="Billy Strings" />
+                        <Picker.Item
+                            label="Nathaniel Rateliff and The Night Sweats"
+                            value="nathaniel rateliff &amp; The Night Sweats"
+                        />
+                        <Picker.Item
+                            label="Billy String"
+                            value="billy strings"
+                        />
                     </Picker>
                 </View>
             ) : (
@@ -160,5 +163,36 @@ const PickerOfItems = (props) => {
         </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: "center",
+    },
+    listenButton: {
+        marginTop: 10,
+        backgroundColor: "gold",
+        borderRadius: 15,
+        width: 110,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    listenButtonNoArtistYet: {
+        marginTop: 10,
+        paddingTop: 7,
+        paddingLeft: 4,
+        backgroundColor: "gold",
+        color: "tomato",
+        fontWeight: "bold",
+        borderRadius: 15,
+        width: 220,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    picker: {
+        width: "100%",
+    },
+});
 
 export default PickerOfItems;

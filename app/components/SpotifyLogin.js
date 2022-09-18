@@ -8,12 +8,13 @@ import {
     SafeAreaView,
     KeyboardAvoidingView,
     StyleSheet,
+    Pressable,
 } from "react-native";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AsyncStorage } from "react-native";
 import { ResponseType, useAuthRequest } from "expo-auth-session";
 import axios from "axios";
-import * as WebBrowser from 'expo-web-browser';
+import * as WebBrowser from "expo-web-browser";
 
 const styles = StyleSheet.create({
     container: {
@@ -22,13 +23,21 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "black",
     },
+    loginButton: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "tomato",
+        height: 45,
+        width: 200,
+        borderRadius: 25,
+    },
     button: {
         width: 200,
         marginTop: 50,
     },
 });
 
-const SpotifyComponent = ({navigation}) => {
+const SpotifyComponent = ({ navigation }) => {
     const CLIENT_ID = "8cf7a0cf72444805aeda7887e60dea29";
     const REDIRECT_URI = "exp://192.168.1.114:19000";
     const RESPONSE_TYPE = "token";
@@ -54,7 +63,7 @@ const SpotifyComponent = ({navigation}) => {
                 "user-read-email",
                 "user-read-private",
             ],
-            // Following "Authorization Code Flow" to fetch token 
+            // Following "Authorization Code Flow" to fetch token
             // after authorizationEndpoint
             // this must be set to false
             usePKCE: false,
@@ -67,66 +76,84 @@ const SpotifyComponent = ({navigation}) => {
         if (response?.type === "success") {
             const { access_token } = response.params;
             setToken(access_token);
+            setTimeout(
+                () =>
+                    navigation.replace("FlyerPage", {
+                        token: token,
+                        songs: songs,
+                    }),
+                5000
+            );
         }
     }, [response]);
 
-    useEffect(() => {
-        if (token) {
-            axios(
-                "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
-                {
-                    method: "GET",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + token,
-                    },
-                }
-            )
-                .then((response) => {
-                    console(response)
-                    setSongs(response);
-                })
-                .catch((error) => {
-                    console.log("error", error.message);
-                });
-        }
-    });
-
-    setTimeout(
-        () =>
-            navigation.replace("FlyerPage", {
-                token: token,
-                songs: songs
-            }),
-        5000
-    );
+    // useEffect(() => {
+    //     if (token) {
+    //         axios(
+    //             "https://api.spotify.com/v1/me/top/tracks?time_range=short_term",
+    //             {
+    //                 method: "GET",
+    //                 headers: {
+    //                     Accept: "application/json",
+    //                     "Content-Type": "application/json",
+    //                     Authorization: "Bearer " + token,
+    //                 },
+    //             }
+    //         )
+    //             .then((response) => {
+    //                 console(response)
+    //                 setSongs(response);
+    //             })
+    //             .catch((error) => {
+    //                 console.log("error", error.message);
+    //             });
+    //     }
+    // });
+    // setTimeout(
+    //     () =>
+    //         navigation.replace("FlyerPage", {
+    //             token: token,
+    //             songs: songs
+    //         }),
+    //     5000
+    // );
 
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <StatusBar style="light" />
             {token ? ( //may change this back to token
-                <Text style={{ color: "red" }}>{token}</Text>
+                <Text style={{ color: "green" }}>"Login Successful!"</Text>
             ) : (
-                <Text style={{ color: "red" }}>No Token</Text>
+                <Text style={{ color: "red" }}>Please Login!</Text>
             )}
             <Text
                 style={{
-                    fontSize: 30,
+                    fontSize: 70,
                     fontWeight: "bold",
                     color: "white",
+                    marginBottom: "0%",
+                }}
+            >
+                FESTIFY
+            </Text>
+            <Text
+                style={{
+                    fontSize: 20,
+                    fontStyle: "italic",
+                    color: "gold",
                     marginBottom: "20%",
                 }}
             >
-                top song player
+                Discover the up and comers.
             </Text>
-            <Button
-                title="Login with Spotify"
-                style={styles.button}
+            <Pressable
+                style={styles.loginButton}
                 onPress={() => {
                     promptAsync();
                 }}
-            />
+            >
+                <Text style={{ fontSize: 16}}>Login with Spotify</Text>
+            </Pressable>
             <View style={{ height: 100 }} />
         </KeyboardAvoidingView>
     );
