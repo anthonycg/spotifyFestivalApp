@@ -17,18 +17,12 @@ import * as WebBrowser from "expo-web-browser";
 import InAppBrowser from "react-native-inappbrowser-reborn";
 import { color } from "react-native-elements/dist/helpers";
 
-// selectionsObj = {
-//     objects : "Record",
-//     parts: "cars"
-// }
-
 const PickerOfItems = (props) => {
     const { token } = props;
     const [artistsOnFlyer, setArtistsOnFlyer] = useState();
     const [selectedArtist, setSelectedArtist] = useState("");
 
     const logout = () => {
-        // setToken("");
         console.log("token:", token);
     };
     const BEARER_PLUST_TOKEN = "Bearer " + token;
@@ -95,8 +89,6 @@ const PickerOfItems = (props) => {
 
     const grabPickerIndex = (itemValue) => {
         setSelectedArtist(itemValue);
-        console.log(itemValue);
-        // console.log(token)
     };
 
     return (
@@ -121,13 +113,6 @@ const PickerOfItems = (props) => {
                         </Text>
                         </Pressable>
                     )}
-
-                    {/* <Pressable style={styles.listenButton} onPress={logout}>
-                        <Text style={{ color: "tomato", fontWeight: "bold" }}>
-                            Logout
-                        </Text>
-                    </Pressable>*/}
-                    {/* <Text>token: {token}</Text>  */}
                     <Picker
                         style={styles.picker}
                         itemStyle={styles.picker}
