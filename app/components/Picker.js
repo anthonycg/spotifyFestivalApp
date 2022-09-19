@@ -115,9 +115,11 @@ const PickerOfItems = (props) => {
                             </Text>
                         </Pressable>
                     ) : (
-                        <Text style={styles.listenButtonNoArtistYet}>
+                        <Pressable style={styles.listenButtonNoArtistYet}>
+                        <Text style={styles.listenButtonNoArtistYetText} >
                             Scroll below to select an artist.
                         </Text>
+                        </Pressable>
                     )}
 
                     {/* <Pressable style={styles.listenButton} onPress={logout}>
@@ -188,10 +190,20 @@ const styles = StyleSheet.create({
     },
     listenButtonNoArtistYet: {
         marginTop: 10,
-        paddingTop: 7,
-        paddingLeft: 4,
+        paddingTop: 5,
+        paddingLeft: 6,
         backgroundColor: "gold",
         color: "tomato",
+        fontWeight: "bold",
+        borderRadius: 15,
+        width: 240,
+        height: 30,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    listenButtonNoArtistYetText: {
+        marginTop: 10,
+        color: "black",
         fontWeight: "bold",
         borderRadius: 15,
         width: 220,
