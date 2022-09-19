@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     },
     picker: {
         width: "100%",
-        color: "white",
+        color: "tomato",
         fontSize: 30,
     },
     pickerItem: {},
