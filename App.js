@@ -18,7 +18,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name="Login"
+                    name=" "
                     component={SpotifyComponent}
                     options={{
                         headerStyle: {
