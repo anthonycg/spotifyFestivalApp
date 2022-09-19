@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 const FlyerPage = ({route,navigation}) => {
-    const {token, setToken} = route.params;
+    const {token} = route.params;
 
     return (
         <SafeAreaView
@@ -43,7 +43,7 @@ const FlyerPage = ({route,navigation}) => {
                 }}
             >
                 
-                <Picker style={{color:"white"}} token={token} setToken = {setToken}></Picker>
+                <Picker style={{color:"white"}} token={token}></Picker>
             </View>
             
         </SafeAreaView>

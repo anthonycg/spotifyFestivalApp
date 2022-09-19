@@ -148,7 +148,7 @@ const PickerOfItems = (props) => {
                         <Picker.Item label="SZA" value="sza" />
                         <Picker.Item label="Phoenix [W2]" value="phoenix" />
                         <Picker.Item
-                            label="Nathaniel Rateliff and The Night Sweats"
+                            label="Nathaniel Rateliff &amp; The Night Sweats"
                             value="nathaniel rateliff &amp; The Night Sweats"
                         />
                         <Picker.Item
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     picker: {
         width: "100%",
         color: "white",
-        fontSize: 38,
+        fontSize: 30,
     },
     pickerItem: {},
 });

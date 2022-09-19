@@ -77,25 +77,29 @@ const SpotifyComponent = ({ navigation }) => {
         if (response?.type === "success") {
             const { access_token } = response.params;
             setToken(access_token);
-            setTimeout(
-                () =>
-                    navigation.replace("FlyerPage", {
-                        token: token,
-                        songs: songs,
-                    }),
-                5000
-            );
+            // setTimeout(
+            //     () =>
+            //         navigation.replace("FlyerPage", {
+            //             token: token,
+            //             songs: songs,
+            //         }),
+            //     3500
+            // );
         }
     }, [response]);
 
-    // setTimeout(
-    //     () =>
-    //         navigation.replace("FlyerPage", {
-    //             token: token,
-    //             songs: songs,
-    //         }),
-    //     5000
-    // );
+    setTimeout(
+        () => {
+        if (token) {
+            navigation.replace("FlyerPage", {
+                token: token,
+                songs: songs,
+            }),
+        2000
+
+        }
+    }
+    );
 
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
